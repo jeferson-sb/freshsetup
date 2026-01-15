@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+alias py="python3"
+
+# uncomment if installed
+# alias ls=exa
+# alias cat=bat
+
+# docker
+# alias dockerip="docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1"
+# alias dockerrm="docker rm $(docker ps --all -q -f status=exited)"
