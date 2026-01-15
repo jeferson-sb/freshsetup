@@ -1,7 +1,7 @@
 ## Installation
 
 ```sh
-$ git clone git@github.com:jeferson-sb/devsetup.git
+$ git clone git@github.com:jeferson-sb/freshsetup.git
 $ cd devsetup
 $ sudo chmod -R +x *.sh
 ```
