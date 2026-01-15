@@ -1,9 +1,14 @@
 ## Installation
 
+### Requirements
+- make
+- git
+- python
+
 ```sh
-$ git clone git@github.com:jeferson-sb/freshsetup.git
-$ cd devsetup
-$ sudo chmod -R +x *.sh
+git clone https://github.com/jeferson-sb/freshsetup.git
+cd freshsetup
+cd scritps && sudo chmod -R +x *.sh && cd ..
 ```
 
 ### Dotfiles
