@@ -21,9 +21,10 @@
   po = push -u origin
   poh = push -u origin HEAD
   poof = push --force-with-lease
-  me = !(git config user.name && git config user.email)
+  whoami = !(git config user.name && git config user.email)
   save = stash push
   pop = stash pop
+  apply = stash apply
   showb = rev-parse --abbrev-ref HEAD
 [commit]
   gpgsign = false
