@@ -8,7 +8,7 @@
 ```sh
 git clone https://github.com/jeferson-sb/freshsetup.git
 cd freshsetup
-cd scritps && sudo chmod -R +x *.sh && cd ..
+cd scripts && sudo chmod -R +x *.sh && cd ..
 ```
 
 ### Dotfiles
