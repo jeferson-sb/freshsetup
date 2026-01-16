@@ -23,7 +23,7 @@ source env/bin/activate
 pip3 install beaupy
 
 # Install selected packages
-python3 $PWD/install_packages.py
+python3 $PWD/scripts/install_packages.py
 
 check "Your system is successfully configured :)"
 
