@@ -12,8 +12,7 @@ readonly CONFIG="$HOME/.config"
 sudo -v
 
 # Install all dotfiles under .dotfiles to the home directory
-for DOTFILE in $(find -H $DOTS -maxdepth 2 -type f)
-do
+for DOTFILE in $(find -H $DOTS -maxdepth 2 -type f); do
   filename=$(basename "${DOTFILE}")
   next "copy $filename"
 
@@ -24,7 +23,7 @@ do
   if [[ $DOTFILE =~ "windows" || -L "$HOME/$filename" ]]; then
     continue
   fi
-  
+
   ln -s $DOTFILE "$HOME/$filename"
 
   check "$filename configured"
@@ -34,6 +33,6 @@ done
 [[ ! -d "$HOME/.vim" ]] && cp -r .vim $HOME
 
 # Copy .config folder (e.g. Neovim/Lunarvim and others)
-ln -s $CONFIG $HOME
+[[ ! -d "$CONFIG" ]] && cp -r .config/* $CONFIG
 
 check "Configuration done. You might need to restart your terminal to finish the installation"
