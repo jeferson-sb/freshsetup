@@ -16,7 +16,7 @@ update_all
 # Pre-requisites (python env)
 python3 -m venv env
 source env/bin/activate
-pip3 install beaupy
+pip3 install beaupy distro
 
 # Install selected packages
 python3 $PWD/scripts/install_packages.py

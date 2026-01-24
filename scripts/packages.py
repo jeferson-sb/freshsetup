@@ -1,4 +1,5 @@
 import subprocess
+import distro
 from os_install import install_package_command, shell_run, is_installed
 
 
@@ -10,6 +11,9 @@ def gitlfs():
 
 def zsh():
     shell_run(install_package_command("zsh"))
+
+
+def powerlevel10k():
     shell_run(
         "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k"
     )
@@ -21,12 +25,15 @@ def vim():
 
 
 def neovim():
+    if distro.like() == "debian" or distro.id() == "ubuntu":
+        shell_run("sudo add-apt-repository ppa:neovim-ppa/stable")
+        shell_run("sudo apt update")
     shell_run(install_package_command("neovim"))
 
 
 def lunarvim():
     shell_run(
-        "LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)"
+        "LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)"
     )
 
 
@@ -36,7 +43,11 @@ def pnpm():
 
 
 def rust_utils():
-    shell_run(install_package_command("eza bat xclip"))
+    shell_run(
+        install_package_command(
+            "eza bat tokei fzf tealdeer ripgrep hyperfine fd-find xclip"
+        )
+    )
 
 
 def sqlite():
@@ -83,3 +94,23 @@ def homebrew():
 
 def others():
     shell_run(install_package_command("btop earlyoom"))
+
+
+def bruno():
+    shell_run(install_package_command("bruno"))
+
+
+def flatpak():
+    shell_run(install_package_command("flatpak install flathub com.spotify.Client"))
+
+
+def discord():
+    shell_run(install_package_command("flatpak install flathub com.discordapp.Discord"))
+
+
+def google_chrome():
+    shell_run(install_package_command("google-chrome-stable"))
+
+
+def vscode():
+    shell_run(install_package_command("flatpak install flathub com.visualstudio.code"))

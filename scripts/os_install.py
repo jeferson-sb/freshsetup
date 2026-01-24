@@ -1,18 +1,19 @@
 import platform
-import re
 import subprocess
+import distro
 
 
 def install_package_command(package):
-    is_arch = re.search(r'manjaro|arch', platform.platform(), re.I)
-    is_fedora = re.search(r'fc39', platform.platform(), re.I)
+    os = distro.id()
 
-    if is_arch:
-        return f'sudo pacman -Sy {package} --noconfirm > /dev/null'
-    if is_fedora:
-        return f'dnf install {package} -y > /dev/null'
+    if os == "arch":
+        return f"sudo pacman -Sy {package} --noconfirm > /dev/null"
+    if os == "fedora":
+        return f"dnf install {package} -y > /dev/null"
+    if platform.system() == "Darwin":
+        return f"brew install {package}"
 
-    return f'sudo apt-get install {package} -y > /dev/null'
+    return f"sudo apt install {package} -y > /dev/null"
 
 
 def shell_run(command):
@@ -20,7 +21,6 @@ def shell_run(command):
 
 
 def is_installed(pckg):
-    code = subprocess.run(
-        f"command -v {pckg} &> /dev/null", shell=True).returncode
+    code = subprocess.run(f"command -v {pckg} &> /dev/null", shell=True).returncode
 
     return bool(code)

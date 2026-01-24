@@ -11,8 +11,10 @@ function update_all() {
 }
 
 # Essentials
-sudo apt install build-essential
-sudo apt install python3-venv
+sudo apt install build-essential -y
+sudo apt install python3-venv -y
+sudo apt install flatpak -y
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Update system upfront
 update_all
@@ -20,10 +22,13 @@ update_all
 # Pre-requisites (python env)
 python3 -m venv env
 source env/bin/activate
-pip3 install beaupy
+pip3 install beaupy distro
 
 # Install selected packages
 python3 $PWD/scripts/install_packages.py
+
+# Folders
+mkdir projects && cd projects && mkdir personal oss work
 
 check "Your system is successfully configured :)"
 
