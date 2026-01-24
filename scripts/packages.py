@@ -100,12 +100,14 @@ def bruno():
     shell_run(install_package_command("bruno"))
 
 
-def flatpak():
-    shell_run(install_package_command("flatpak install flathub com.spotify.Client"))
+def spotify():
+    shell_run(install_package_command("flatpak install flathub com.spotify.Client -y"))
 
 
 def discord():
-    shell_run(install_package_command("flatpak install flathub com.discordapp.Discord"))
+    shell_run(
+        install_package_command("flatpak install flathub com.discordapp.Discord -y")
+    )
 
 
 def google_chrome():
@@ -113,4 +115,6 @@ def google_chrome():
 
 
 def vscode():
-    shell_run(install_package_command("flatpak install flathub com.visualstudio.code"))
+    shell_run(
+        install_package_command("flatpak install flathub com.visualstudio.code -y")
+    )
