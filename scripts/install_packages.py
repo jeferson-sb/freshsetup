@@ -13,14 +13,14 @@ console = Console()
 def list_functions(module):
     function_names = []
     for name, item in getmembers(module):
-        if isfunction(item) and not name.startswith('_'):
+        if isfunction(item) and not name.startswith("os"):
             function_names.append(name)
     return function_names
 
 
 def prompt_options(packages) -> List[str]:
     console.print("Please select which packages you would like to install:")
-    return select_multiple(packages, tick_character='✔', ticked_indices=[0])
+    return select_multiple(packages, tick_character="✔", ticked_indices=[0])
 
 
 def init() -> any:
@@ -34,5 +34,5 @@ def init() -> any:
         call_install()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     init()

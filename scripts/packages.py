@@ -1,74 +1,80 @@
 import subprocess
 import distro
-from os_install import install_package_command, shell_run, is_installed
+from os_install import install_package_command as os_install_package_command
+from os_install import shell_run as os_shell_run
+from os_install import is_installed as os_is_installed
 
 
 def gitlfs():
-    shell_run(
+    os_shell_run(
         "curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash"
     )
 
 
 def zsh():
-    shell_run(install_package_command("zsh"))
+    os_shell_run(os_install_package_command("zsh"))
 
 
 def powerlevel10k():
-    shell_run(
+    os_shell_run(
         "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k"
     )
-    shell_run("echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc")
+    os_shell_run("echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc")
 
 
 def vim():
-    shell_run(install_package_command("vim"))
+    os_shell_run(os_install_package_command("vim"))
 
 
 def neovim():
-    if distro.like() == "debian" or distro.id() == "ubuntu":
-        shell_run("sudo add-apt-repository ppa:neovim-ppa/stable")
-        shell_run("sudo apt update")
-    shell_run(install_package_command("neovim"))
+    if distro.id() == "ubuntu":
+        os_shell_run("sudo add-apt-repository ppa:neovim-ppa/stable")
+        os_shell_run("sudo apt update")
+    os_shell_run(os_install_package_command("neovim"))
 
 
 def lunarvim():
-    shell_run(
+    os_shell_run(
         "LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)"
     )
 
 
 def pnpm():
-    shell_run("curl -fsSL https://get.pnpm.io/install.sh | sh -")
-    shell_run('echo "export PNPM_HOME=$HOME/.local/share/pnpm" | sudo tee -a ~/.zshenv')
+    os_shell_run("curl -fsSL https://get.pnpm.io/install.sh | sh -")
+    os_shell_run(
+        'echo "export PNPM_HOME=$HOME/.local/share/pnpm" | sudo tee -a ~/.zshenv'
+    )
 
 
 def rust_utils():
-    shell_run(
-        install_package_command(
+    os_shell_run(
+        os_install_package_command(
             "eza bat tokei fzf tealdeer ripgrep hyperfine fd-find xclip"
         )
     )
 
 
 def sqlite():
-    shell_run(install_package_command("sqlite"))
+    os_shell_run(os_install_package_command("sqlite3"))
 
 
 def asdf_git():
-    shell_run("git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.18.0")
-    shell_run('echo ". $HOME/.asdf/asdf.sh" | sudo tee -a ~/.zshrc')
+    os_shell_run(
+        "git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.18.0"
+    )
+    os_shell_run('echo ". $HOME/.asdf/asdf.sh" | sudo tee -a ~/.zshrc')
 
 
 def asdf_pacman():
-    shell_run(
+    os_shell_run(
         "git clone https://aur.archlinux.org/asdf-vm.git && cd asdf-vm && makepkg -si"
     )
-    shell_run('echo ". /opt/asdf-vm/asdf.sh" | sudo tee -a ~/.zshrc')
+    os_shell_run('echo ". /opt/asdf-vm/asdf.sh" | sudo tee -a ~/.zshrc')
 
 
 def programming_languages():
-    if is_installed("asdf"):
-        shell_run(
+    if os_is_installed("asdf"):
+        os_shell_run(
             """
           asdf plugin-add elixir
           && asdf plugin-add erlang
@@ -84,37 +90,33 @@ def programming_languages():
 
 
 def homebrew():
-    shell_run(
+    os_shell_run(
         'sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"'
     )
-    shell_run(
+    os_shell_run(
         "[ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     )
 
 
 def others():
-    shell_run(install_package_command("btop earlyoom"))
+    os_shell_run(os_install_package_command("btop earlyoom"))
 
 
 def bruno():
-    shell_run(install_package_command("bruno"))
+    os_shell_run(os_install_package_command("bruno"))
 
 
 def spotify():
-    shell_run(install_package_command("flatpak install flathub com.spotify.Client -y"))
+    os_shell_run("flatpak install flathub com.spotify.Client -y")
 
 
 def discord():
-    shell_run(
-        install_package_command("flatpak install flathub com.discordapp.Discord -y")
-    )
+    os_shell_run("flatpak install flathub com.discordapp.Discord -y")
 
 
 def google_chrome():
-    shell_run(install_package_command("google-chrome-stable"))
+    os_shell_run("flatpak install flathub com.google.Chrome -y")
 
 
 def vscode():
-    shell_run(
-        install_package_command("flatpak install flathub com.visualstudio.code -y")
-    )
+    os_shell_run("flatpak install flathub com.visualstudio.code -y")
