@@ -21,6 +21,9 @@ pip3 install beaupy distro
 # Install selected packages
 python3 $PWD/scripts/install_packages.py
 
+# Folders
+[[ ! -d "$HOME/projects" ]] && mkdir $HOME/projects && cd $HOME/projects && mkdir personal oss work
+
 check "Your system is successfully configured :)"
 
 deactivate

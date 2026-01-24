@@ -33,6 +33,10 @@ done
 [[ ! -d "$HOME/.vim" ]] && cp -r .vim $HOME
 
 # Copy .config folder (e.g. Neovim/Lunarvim and others)
-[[ ! -d "$CONFIG" ]] && cp -r .config/* $CONFIG
+if [[ ! -d "$CONFIG" ]] then
+  cp -r .config $CONFIG
+else
+  cp -r .config/* $CONFIG
+fi
 
 check "Configuration done. You might need to restart your terminal to finish the installation"
