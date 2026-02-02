@@ -11,13 +11,17 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
-
 # History
 HISTFILE=~/.zhistory
 HISTSIZE=1000000
 SAVEHIST=1000000
+setopt autocd
+autoload -U compinit; compinit
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Autosuggestions with fzf
+# source <(fzf --zsh)
 
 plugins=(git)
 
